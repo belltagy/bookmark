@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'easy_thumbnails',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+from django.urls import reverse_lazy
+ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: reverse_lazy('user_detail',
+                args=[u.username])
+}
 ROOT_URLCONF = 'bookmarks.urls'
 
 TEMPLATES = [
@@ -152,3 +156,10 @@ SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter API Secret
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' # Google Consumer Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Google Consumer Secret
+#########################configure redis ######################3
+
+
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
